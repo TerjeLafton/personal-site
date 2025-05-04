@@ -5,7 +5,9 @@ import SubTitle from "../components/SubTitle.astro";
 import Title from "../components/Title.astro";
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 
-const posts = await getCollection("blog");
+const posts = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
 ---
 
 <DefaultLayout pageTitle="Terje's Blog">
