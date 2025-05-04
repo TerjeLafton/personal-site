@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&display=swap");
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --font-primary: "Comfortaa", sans-serif;
+  --font-mono: "Fira Code", monospace;
+}
+
+* {
+  font-family: var(--font-primary);
+}
+
+code span {
+  font-family: var(--font-mono);
+}
+
+p code {
+  font-family: var(--font-mono);
+}

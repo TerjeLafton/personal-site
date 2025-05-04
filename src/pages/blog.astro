@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Card from "../components/Card.astro";
+import SubTitle from "../components/SubTitle.astro";
+import Title from "../components/Title.astro";
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+
+const posts = await getCollection("blog");
+---
+
+<DefaultLayout pageTitle="Terje's Blog">
+  <div class="flex flex-col gap-12 items-center w-full">
+    <div class="flex flex-col gap-4 w-full px-4 sm:px-0">
+      <Title content="Blog" />
+      <SubTitle content="A place for me to scribble my thoughts on things like technology and programming." />
+    </div>
+
+    <div class="flex flex-col gap-6 w-full px-4 sm:px-6">
+      {
+        posts.map((post) => (
+          <Card
+            title={post.data.title}
+            description={post.data.description}
+            tags={post.data.tags}
+            link={`/blog/${post.id}`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</DefaultLayout>

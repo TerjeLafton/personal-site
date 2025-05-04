@@ -1,16 +1,51 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
 
+const name = "Terje Lafton";
+const tagline = "Network Engineer |> Software Engineer |> Forever Developing";
+const navLinks = [
+  { title: "Projects", href: "/projects" },
+  { title: "Blog", href: "/blog" },
+  { title: "About", href: "/about" },
+];
+const socialLinks = [
+  { title: "GitHub", href: "https://github.com/TerjeLafton", icon: "simple-icons:github" },
+  { title: "Linkedin", href: "https://www.linkedin.com/in/terje-lafton-164570b9/", icon: "simple-icons:linkedin" },
+  { title: "Email", href: "mailto:terje@lafton.io", icon: "simple-icons:maildotru" },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout pageTitle="Terje's Home">
+  <div class="flex flex-col gap-6 items-center justify-center min-h-screen text-center">
+    <h1 class="text-6xl tracking-wide">{name}</h1>
+    <p class="text-xl text-gray-400">{tagline}</p>
+
+    <div>
+      <ul class="flex gap-8">
+        {
+          navLinks.map((link) => (
+            <a aria-label={link.title} class="text-lg hover:text-purple-400 transition-color" href={link.href}>
+              {link.title}
+            </a>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div class="flex flex-row gap-6">
+        {
+          socialLinks.map((link) => (
+            <a aria-label={link.title} href={link.href}>
+              <Icon class="text-gray-300 hover:text-purple-400 transition-colors" name={link.icon} size={24} />
+            </a>
+          ))
+        }
+      </div>
+      <p class="text-sm text-gray-500">
+        © {new Date().getFullYear()} Terje Lafton
+      </p>
+    </div>
+  </div>
+</BaseLayout>

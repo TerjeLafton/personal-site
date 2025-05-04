@@ -1,0 +1,57 @@
+---
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+import Card from "../components/Card.astro";
+import Title from "../components/Title.astro";
+import SubTitle from "../components/SubTitle.astro";
+
+const projects = [
+  {
+    title: "yang-rs",
+    description: "Libraries for managing network devices with YANG and gNMI through Rust.",
+    tags: ["Rust", "YANG", "gNMI", "Pest"],
+    link: "https://github.com/TerjeLafton/yang-rs",
+  },
+  {
+    title: "Network Automation Platform",
+    description:
+      "Managing network devices through a custom Crossplane Provider using Go with gNMI. Closed source because of work.",
+    tags: ["Kubernetes", "Crossplane", "Go", "YANG", "gNMI"],
+  },
+  {
+    title: "Personal Site",
+    description: "This website! Built with Astro and TailwindCSS to learn some frontend techonology.",
+    tags: ["Astro", "TypeScript", "TailwindCSS", "Zod", "Markdown", "GitHub Pages"],
+    link: "https://github.com/TerjeLafton/personal-site",
+  },
+  {
+    title: "Product Crawler",
+    description:
+      "CLI created for interview with Oda that scrapes the Oda.com webshop for all products and their prices.",
+    tags: ["Python", "BeautifulSoup", "Typer", "PyPI"],
+    link: "https://github.com/TerjeLafton/product-crawler",
+  },
+  {
+    title: "Projectoid.nvim",
+    description: "Playing around with the idea of a proper project manager in Neovim.",
+    tags: ["Neovim", "Lua", "SQLite"],
+    link: "https://github.com/TerjeLafton/projectoid.nvim",
+  },
+];
+---
+
+<DefaultLayout pageTitle="Terje's Projects">
+  <div class="flex flex-col gap-12 items-center w-full">
+    <div class="flex flex-col gap-4 w-full px-4 sm:px-0">
+      <Title content="Projects" />
+      <SubTitle content="Some of the projects I have been working on." />
+    </div>
+
+    <div class="flex flex-col gap-6 w-full px-4 sm:px-6">
+      {
+        projects.map((project) => (
+          <Card title={project.title} description={project.description} tags={project.tags} link={project.link} />
+        ))
+      }
+    </div>
+  </div>
+</DefaultLayout>
